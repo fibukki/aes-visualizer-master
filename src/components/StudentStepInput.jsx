@@ -38,12 +38,14 @@ function RoundKeyGrid({ roundKey, round, currentState }) {
       </div>
       <div className="student-roundkey-grid">
         {Array.from({ length: 16 }, (_, i) => {
+          const row = i % 4;
+          const col = Math.floor(i / 4);
           const stateByte = currentState?.[i];
           const keyByte = roundKey[i];
           const xorByte = (stateByte ?? 0) ^ (keyByte ?? 0);
           return (
-            <div key={i} className="student-roundkey-cell" title={`byte ${i}: ${hex2(stateByte)} ⊕ ${hex2(keyByte)} = ${hex2(xorByte)}`}>
-              <span className="student-roundkey-idx">{i.toString(16).toUpperCase()}</span>
+            <div key={i} className="student-roundkey-cell" title={`[r${row} c${col}]: ${hex2(stateByte)} ⊕ ${hex2(keyByte)} = ${hex2(xorByte)}`}>
+              <span className="student-roundkey-idx">r{row}c{col}</span>
               <span className="student-roundkey-byte">{hex2(keyByte)}</span>
             </div>
           );
@@ -238,7 +240,8 @@ export default function StudentStepInput({ currentStep, nextStep, onCorrect }) {
           <b>How to use:</b><br />
           1) Look at the current matrix above.<br />
           2) Apply the next AES operation yourself.<br />
-          3) Type the resulting 16 bytes here.<br />
+          3) Type the resulting 16 bytes here, <b>column by column</b>:<br />
+          &nbsp;&nbsp;&nbsp;column 0 = top→bottom of leftmost column, then column 1, etc.<br />
           4) Red cells mean incorrect bytes.
         </div>
       </div>

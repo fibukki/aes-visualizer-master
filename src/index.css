@@ -602,7 +602,9 @@ button:focus-visible, input:focus-visible {
 }
 .student-grid {
   display: grid;
-  grid-template-columns: repeat(4, 54px);
+  grid-template-rows: repeat(4, 48px);
+  grid-auto-flow: column;
+  grid-auto-columns: 54px;
   gap: 7px;
   padding: 12px;
   border-radius: 12px;
@@ -705,7 +707,9 @@ button:focus-visible, input:focus-visible {
 }
 .student-roundkey-grid {
   display: grid;
-  grid-template-columns: repeat(4, 54px);
+  grid-template-rows: repeat(4, 48px);
+  grid-auto-flow: column;
+  grid-auto-columns: 54px;
   gap: 6px;
   margin-bottom: 8px;
 }
